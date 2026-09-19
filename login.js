@@ -1,7 +1,7 @@
 import chalk from "chalk";
 
 async function signMessage(address) {
-    const url = `https://testnet-api.x1.one/signin?address=${address}`
+    const url = `https://testnet-api.x1eco.com/signin?address=${address}`;
 
     const headers = {
         'accept': '*/*',
@@ -18,34 +18,35 @@ async function signMessage(address) {
         'sec-fetch-mode': 'cors',
         'sec-fetch-site': 'cross-site',
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36'
-    }
+    };
 
-    while(true) {
+    while (true) {
         try {
             const response = await fetch(url, {
                 method: 'GET',
                 headers: headers,
-            })
+            });
 
-            if(!response.ok) {
-                throw new Error(`${response.status} ${response.statusText}`)
+            if (!response.ok) {
+                throw new Error(`${response.status} ${response.statusText}`);
             }
 
-            return await response.json()
+            return await response.json();
         } catch (err) {
-            console.log(chalk.red(`⛔ Error to sign message: ${err.message}`))
+            console.log(chalk.gray(`   [!] Gagal request sign message (${err.message}), mencoba lagi dalam 3s...`));
+            await new Promise((r) => setTimeout(r, 3000));
         }
     }
 }
 
 async function logIn(signature, address) {
-    const url = "https://testnet-api.x1.one/signin"
+    const url = "https://testnet-api.x1eco.com/signin";
 
     const payload = JSON.stringify({
         "signature": signature,
         "address": address,
         "ref_code": ""
-    })
+    });
 
     const headers = {
         'accept': '*/*',
@@ -62,25 +63,26 @@ async function logIn(signature, address) {
         'sec-fetch-mode': 'cors',
         'sec-fetch-site': 'cross-site',
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36'
-    }
+    };
 
-    while(true) {
+    while (true) {
         try {
             const response = await fetch(url, {
                 method: 'POST',
                 headers: headers,
                 body: payload
-            })
+            });
 
-            if(!response.ok) {
-                throw new Error(`${response.status} ${response.statusText}`)
+            if (!response.ok) {
+                throw new Error(`${response.status} ${response.statusText}`);
             }
 
-            return await response.json()
+            return await response.json();
         } catch (err) {
-            console.log(chalk.red(`⛔ Error to login: ${err.message}`))
+            console.log(chalk.gray(`   [!] Gagal autentikasi signin (${err.message}), mencoba lagi dalam 3s...`));
+            await new Promise((r) => setTimeout(r, 3000));
         }
     }
 }
 
-export { signMessage, logIn }
+export { signMessage, logIn };

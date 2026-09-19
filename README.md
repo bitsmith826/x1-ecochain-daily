@@ -1,5 +1,9 @@
 # X1 Ecochain Daily Tasks & Faucet Bot
 
+> ⚠️ **DISCLAIMER**: Proyek ini dibuat **semata-mata untuk tujuan edukasi, riset, dan pembelajaran (Educational Purposes Only)** mengenai cara kerja interaksi blockchain testnet, penanganan REST API, dan otomasi Node.js. Gunakan dengan bijak sesuai ketentuan jaringan uji coba!
+
+---
+
 Otomatisasi interaksi harian, klaim faucet testnet resmi, transfer koin on-chain (Send X1T), penyelesaian quest harian, dan pemburu bonus quest otomatis di jaringan **X1 Ecochain Testnet**.
 
 ---
@@ -62,9 +66,9 @@ npm start
 
 ---
 
-## 💡 Edukasi & Penjelasan Status Quest (FAQ)
+## 💡 Penjelasan Teknis & FAQ Sistem Quest
 
-Berikut adalah informasi penting mengenai cara kerja sistem quest dan status tampilan di terminal bot:
+Berikut adalah rincian teknis mengenai cara kerja sistem quest dan status tampilan di terminal bot:
 
 ### 1. Mengapa baris `DAILY` berstatus `[ COOLDOWN ] Sudah Selesai`?
 - **Penyebab**: Di versi testnet awal, terdapat quest fisik bernama *"Daily Login"* (ID: `691fd172814608a47a30e4a8`). Namun, oleh developer resmi X1 Ecochain, quest tersebut **telah ditiadakan dari daftar endpoint `/quests`**.
@@ -92,6 +96,14 @@ Berikut adalah informasi penting mengenai cara kerja sistem quest dan status tam
 ### 4. Mengapa ada jeda waktu (Rate Limit) saat klaim Faucet?
 - Server faucet resmi X1 Ecochain (`nft-api.x1eco.com`) dilindungi oleh sistem Cloudflare dengan batas frekuensi (**IP Rate Limit ~20 detik per IP**).
 - Bot ini dilengkapi fitur cerdas **Smart Auto-Cooldown**: saat mendeteksi respon `HTTP 429 (Rate Limit)`, bot akan menunggu jeda cooldown secara aman di balik layar tanpa menimbulkan error/crash, lalu melanjutkan proses klaim hingga berhasil.
+
+---
+
+## ⚠️ Disclaimer (Tujuan Edukasi)
+
+1. **Hanya untuk Edukasi (Educational Purposes Only)**: Repositori dan kode ini dibuat murni sebagai sarana riset dan pembelajaran mengenai arsitektur Web3, interaksi smart contract EVM, serta otomatisasi REST API menggunakan Node.js.
+2. **Lingkungan Testnet**: Proyek ini dirancang secara eksklusif untuk jaringan uji coba (**Testnet**) X1 Ecochain dan tidak melibatkan aset atau transaksi finansial nyata (Mainnet).
+3. **Tanggung Jawab Pengguna**: Segala risiko teknis atau konsekuensi dari penggunaan skrip ini sepenuhnya berada di bawah tanggung jawab pengguna masing-masing. Pembuat/kontributor tidak bertanggung jawab atas segala bentuk penyalahgunaan di luar tujuan edukasi.
 
 ---
 
